@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\Balance;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Dashboard\BalanceRequest;
+use Exception;
 
 class Balanceontroller extends Controller
 {
@@ -12,7 +16,8 @@ class Balanceontroller extends Controller
      */
     public function index()
     {
-        //
+        $data = Balance::orderByDesc('id')->paginate();
+        return view('dashboard.balances.index', compact('data'));
     }
 
     /**
@@ -20,46 +25,75 @@ class Balanceontroller extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.balances.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BalanceRequest $request, Balance $balance)
     {
-        //
+        try {
+            $user = Auth::user()->id;
+            $validated = $request->validated();
+            $dataInsert = array_merge($validated, [
+                'created_by' => $user,
+            ]);
+            $balance->create($dataInsert);
+            return redirect()->route('dashboard.balances.index')
+                ->with('success', 'تم أضافة الرصيد بنجاح');
+        } catch (Exception $ex) {
+            return redirect()->route('dashboard.balances.index')->withErrors(['errors' => 'عفوآ حدث خطأ'])->withInput();
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Balance $balance)
     {
-        //
+        return view('dashboard.balances.show', compact('balance'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Balance $balance)
     {
-        //
+        return view('dashboard.balances.edit', compact('balance'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BalanceRequest $request, Balance $balance)
     {
-        //
+        try {
+            $user = Auth::user()->id;
+            $validated = $request->validated();
+            $dataUpdate = array_merge($validated, [
+                'created_by' => $user,
+            ]);
+            $balance->update($dataUpdate);
+            return redirect()->route('dashboard.balances.index')
+                ->with('success', 'تم تعديل الرصيد بنجاح');
+        } catch (Exception $ex) {
+            return redirect()->route('dashboard.balances.index')->withErrors(['errors' => 'عفوآ حدث خطأ'])->withInput();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Balance $balance)
     {
-        //
+        try {
+            $balance->delete();
+            return redirect()->route('dashboard.balances.index')
+                ->with('success', 'تم حذف الرصيد بنجاح');
+        } catch (Exception $ex) {
+            return redirect()->route('dashboard.balances.index')->withErrors(['errors' => 'عفوآ حدث خطأ'])->withInput();
+        }
     }
 }
