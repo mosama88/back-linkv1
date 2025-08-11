@@ -32,16 +32,31 @@
                 <!-- روابط الدخول واشتراك على اليمين -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route('login')}}">الدخول
-                                <i class="fa-solid fa-right-to-bracket"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('register')}}">اشترك
-                                <i class="fa-solid fa-address-card"></i>
-                            </a>
-                        </li>
+                        @auth
+                            <li class="nav-item">
+
+
+                                <form action="{{ route('logout') }}" method="POST" class="mb-0">
+                                    @csrf
+                                    <button class="nav-link active" type="submit" aria-current="page">
+                                        <i class="fas fa-power-off text-primary mx-1"></i>
+                                        تسجيل الخروج
+                                    </button>
+                                </form>
+                            </li>
+                        @endauth
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('login') }}">الدخول
+                                    <i class="fa-solid fa-right-to-bracket"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">اشترك
+                                    <i class="fa-solid fa-address-card"></i>
+                                </a>
+                            </li>
+                        @endguest
                 </div>
                 <div class="navbar-brand float-end">
                     <!-- اللوجو / البراند على الشمال -->
