@@ -1,11 +1,11 @@
 @extends('dashboard.auth.layouts.master')
-@section('title', 'صفحة الدخول')
+@section('title', 'صفحة تسجيل حساب جديد')
 @section('content')
-    <form action="{{ route('login') }}" method="POST">
+    <form action="{{ route('register') }}" method="POST">
         @csrf
         <a href="index.html"><img src="{{ asset('dashboard') }}/assets/images/logo-icon.png"
                 class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
-        <h5 class="mb-3 text-center">Please sign in</h5>
+        <h5 class="mb-3 text-center">Please Register</h5>
 
         <div class="form-floating mb-2">
             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
