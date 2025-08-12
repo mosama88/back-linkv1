@@ -123,19 +123,15 @@
                             <img src="{{ asset('dashboard') }}/assets/images/client/05.jpg"
                                 class="avatar avatar-md-sm rounded-circle border shadow" alt="">
                             <div class="flex-1 ms-2">
-                                <span class="d-block">Cristina Julia</span>
-                                <small class="text-muted">UI / UX Designer</small>
+                                <span class="d-block">{{ Auth::user()->name }}</span>
+                                <small class="text-muted">{{ Auth::user()->email }}</small>
                             </div>
                         </a>
-                        <a class="dropdown-item text-dark" href="index.html"><span
-                                class="mb-0 d-inline-block me-1"><i class="ti ti-home"></i></span>
-                            Dashboard</a>
-                        <a class="dropdown-item text-dark" href="profile.html"><span
+
+                        <a class="dropdown-item text-dark" href="{{ route('profile.edit') }}"><span
                                 class="mb-0 d-inline-block me-1"><i class="ti ti-settings"></i></span>
-                            Profile</a>
-                        <a class="dropdown-item text-dark" href="email.html"><span
-                                class="mb-0 d-inline-block me-1"><i class="ti ti-mail"></i></span>
-                            Email</a>
+                            الحساب التعريفي</a>
+
                         <div class="dropdown-divider border-top"></div>
                         <form action="{{ route('logout') }}" method="POST" class="mb-0">
                             @csrf

@@ -1,4 +1,4 @@
-@extends('dashboard.auth.layouts.master')
+@extends('website.auth.layouts.master')
 @section('title', 'صفحة تسجيل حساب جديد')
 @section('content')
     <form action="{{ route('register') }}" method="POST">

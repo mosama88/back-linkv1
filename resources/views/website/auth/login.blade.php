@@ -1,4 +1,4 @@
-@extends('dashboard.auth.layouts.master')
+@extends('website.auth.layouts.master')
 @section('title', 'صفحة الدخول')
 @section('content')
     <form action="{{ route('login') }}" method="POST">
