@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('url');
+            $table->decimal('value',10,2)->nullable();
+            $table->tinyInteger('active')->default(1);
+            $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
+            $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
             $table->timestamps();
         });
     }
