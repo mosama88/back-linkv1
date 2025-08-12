@@ -23,6 +23,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
     }
 
     /**
@@ -31,5 +32,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('admins');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('sessions');
     }
 };

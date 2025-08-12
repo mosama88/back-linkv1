@@ -32,7 +32,7 @@
         <div class="d-flex justify-content-between">
             <div class="mb-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" name="remember" type="checkbox" value="" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">تذكرنى</label>
                 </div>
             </div>

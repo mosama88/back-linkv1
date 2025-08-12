@@ -36,10 +36,6 @@ class AdminLoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'الاسم مطلوب.',
-            'name.string' => 'الاسم يجب أن يكون نصًا.',
-            'name.max' => 'الاسم لا يجب أن يزيد عن 60 حرفًا.',
-
             'email.required' => 'البريد الإلكتروني مطلوب.',
             'email.email' => 'صيغة البريد الإلكتروني غير صحيحة.',
 
@@ -59,7 +55,7 @@ class AdminLoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (auth('admin')->attempt($this->only('username', 'password'), $this->boolean('remember'))) {
+        if (! auth('admin')->attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

@@ -36,12 +36,16 @@
                             <li class="nav-item">
 
 
-                                <form action="{{ route('logout') }}" method="POST" class="mb-0">
-                                    @csrf
-                                    <button class="nav-link active" type="submit" aria-current="page">
-                                        <i class="fas fa-power-off text-primary mx-1"></i>
-                                        تسجيل الخروج
-                                    </button>
+                                @if (Auth::guard('admin'))
+                                    <form action="{{ route('dashboard.logout') }}" method="POST" class="mb-0">
+                                    @else
+                                        <form action="{{ route('logout') }}" method="POST" class="mb-0">
+                                @endif
+                                @csrf
+                                <button class="nav-link active" type="submit" aria-current="page">
+                                    <i class="fas fa-power-off text-primary mx-1"></i>
+                                    تسجيل الخروج
+                                </button>
                                 </form>
                             </li>
                         @endauth

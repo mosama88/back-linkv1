@@ -133,7 +133,11 @@
                             الحساب التعريفي</a>
 
                         <div class="dropdown-divider border-top"></div>
-                        <form action="{{ route('logout') }}" method="POST" class="mb-0">
+                        @if (Auth::guard('admin'))
+                            <form action="{{ route('dashboard.logout') }}" method="POST" class="mb-0">
+                            @else
+                                <form action="{{ route('logout') }}" method="POST" class="mb-0">
+                        @endif
                             @csrf
                             <button type="submit" class="dropdown-item text-dark">
                                 <span class="mb-0 d-inline-block me-1"><i class="ti ti-logout"></i></span>
