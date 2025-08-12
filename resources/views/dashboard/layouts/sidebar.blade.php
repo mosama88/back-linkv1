@@ -27,8 +27,8 @@
                     <a href="javascript:void(0)"><i class="ti ti-browser me-2"></i>المستخدمين</a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="index-rtl.html">المستخدمين</a></li>
-                            <li><a href="index-dark.html">الأدمن</a></li>
+                            <li><a href="{{ route('dashboard.users.index') }}">المستخدمين</a></li>
+                            <li><a href="{{ route('dashboard.back-links.index') }}">الأدمن</a></li>
                         </ul>
                     </div>
                 </li>
