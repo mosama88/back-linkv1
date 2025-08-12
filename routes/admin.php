@@ -7,7 +7,7 @@ use App\Http\Controllers\Dashboard\BackLinkController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\AuthAdminController;
 
-Route::middleware(['web', 'auth:admin', 'session_id'])->group(function () {
+Route::middleware([ 'auth:admin', 'session_id'])->group(function () {
     Route::get('/', function () {
         return view('dashboard.index');
     })->name('index');
