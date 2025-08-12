@@ -32,7 +32,7 @@ Route::middleware('guest:admin')->group(function () {
     Route::get('login', [AuthAdminController::class, 'create'])
         ->name('login');
 
-    Route::post('login', [AuthAdminController::class, 'store'])->middleware('session_id');
+    Route::post('login', [AuthAdminController::class, 'store']);
 });
 
 Route::middleware('auth:admin')->group(function () {
