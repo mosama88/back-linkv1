@@ -26,8 +26,6 @@ class BackLink extends Model
         'updated_by'
     ];
 
-    public $translatable = ['name'];
-
 
     public function getSlugOptions(): SlugOptions
     {

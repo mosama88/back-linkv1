@@ -25,8 +25,6 @@ class Balance extends Model
         'updated_by'
     ];
 
-    public $translatable = ['name'];
-
 
     public function getSlugOptions(): SlugOptions
     {
@@ -40,6 +38,11 @@ class Balance extends Model
         return 'slug';
     }
 
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function createdBy(): BelongsTo
     {
