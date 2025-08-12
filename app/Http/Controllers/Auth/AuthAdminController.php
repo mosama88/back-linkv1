@@ -26,13 +26,12 @@ class AuthAdminController extends Controller
     public function store(AdminLoginRequest $request): RedirectResponse
     {
         $request->authenticate();
+
         $request->session()->regenerate();
-        // تخزين بيانات الادمن في الـ sessions table
-        $request->session()->put('user_id', Auth::guard('admin')->id());
-        $request->session()->put('guard', 'admin');
 
         return redirect()->intended(route('dashboard.index', absolute: false));
     }
+
     /**
      * Destroy an authenticated session.
      */
