@@ -7,13 +7,13 @@ use App\Http\Controllers\Dashboard\BackLinkController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\AuthAdminController;
 
-Route::middleware([ 'auth:admin', 'session_id'])->group(function () {
+Route::middleware('auth:admin')->group(function () {
     Route::get('/', function () {
         return view('dashboard.index');
     })->name('index');
 });
 
-Route::middleware('auth:admin')->group(function () {
+Route::middleware('admin')->group(function () {
     Route::resource('balances', Balanceontroller::class);
     Route::resource('back-links', BackLinkController::class);
     Route::get('users', [AuthenticatedSessionController::class, 'index'])->name('users.index');

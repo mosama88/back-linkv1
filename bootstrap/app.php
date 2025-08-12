@@ -4,6 +4,7 @@ use App\Http\Middleware\UserAuth;
 use App\Http\Middleware\AdminAuth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Middleware\StoreSessionUserId;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
@@ -22,7 +23,6 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo('/');
         $middleware->alias([
-            'session_id'=> \App\Http\Middleware\StoreSessionUserId::class,
             'admin'=> AdminAuth::class,
             'auth'=> UserAuth::class,
         ]
