@@ -17,7 +17,7 @@ class AdminAuth
     public function handle($request, Closure $next)
     {
         if (!Auth::guard('admin')->check()) {
-            return redirect('/dashboad/login'); // أو أي صفحة دخول مناسبة
+            return redirect('/dashboard/login'); // أو أي صفحة دخول مناسبة
         }
 
         return $next($request);
