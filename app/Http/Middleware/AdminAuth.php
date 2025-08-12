@@ -4,9 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminOrUserAuth
+class AdminAuth
 {
     /**
      * Handle an incoming request.
@@ -15,9 +16,9 @@ class AdminOrUserAuth
      */
     public function handle($request, Closure $next)
     {
-        // if (! auth('admin')->check() && ! auth('web')->check()) {
-        //     return redirect('/'); // أو أي صفحة دخول مناسبة
-        // }
+        if (!Auth::guard('admin')->check()) {
+            return redirect('/dashboad/login'); // أو أي صفحة دخول مناسبة
+        }
 
         return $next($request);
     }

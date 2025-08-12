@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Middleware\UserAuth;
+use App\Http\Middleware\AdminAuth;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Support\Facades\Route;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -21,6 +23,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo('/');
         $middleware->alias([
             'session_id'=> \App\Http\Middleware\StoreSessionUserId::class,
+            'admin'=> AdminAuth::class,
+            'auth'=> UserAuth::class,
         ]
         );
     })
