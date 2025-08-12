@@ -7,11 +7,11 @@ use App\Http\Controllers\Dashboard\BackLinkController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\AuthAdminController;
 
-
-Route::get('/', function () {
-    return view('dashboard.index');
-})->middleware(['auth', 'verified'])->name('index');
-
+Route::middleware(['web', 'auth:admin', 'session_id'])->group(function () {
+    Route::get('/', function () {
+        return view('dashboard.index');
+    })->name('index');
+});
 
 Route::middleware('auth:admin')->group(function () {
     Route::resource('balances', Balanceontroller::class);
@@ -32,7 +32,7 @@ Route::middleware('guest:admin')->group(function () {
     Route::get('login', [AuthAdminController::class, 'create'])
         ->name('login');
 
-    Route::post('login', [AuthAdminController::class, 'store']);
+    Route::post('login', [AuthAdminController::class, 'store'])->middleware('session_id');
 });
 
 Route::middleware('auth:admin')->group(function () {

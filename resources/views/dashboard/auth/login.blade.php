@@ -3,7 +3,7 @@
 @section('content')
     <form action="{{ route('dashboard.login') }}" method="POST">
         @csrf
-        <a href="index.html"><img src="{{ asset('dashboard') }}/assets/images/logo-icon.png"
+        <a href="{{route('web-site.index')}}"><img src="{{ asset('dashboard') }}/assets/images/logo-icon.png"
                 class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
         <h5 class="mb-3 text-center">الرجاء تسجيل الدخول (الأدمن)</h5>
 

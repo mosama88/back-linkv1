@@ -22,13 +22,29 @@ class AuthAdminController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+
     public function store(AdminLoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        // جلب بيانات تسجيل الدخول
+        $credentials = $request->only('email', 'password');
 
-        $request->session()->regenerate();
+        // محاولة تسجيل الدخول باستخدام حارس الـ admin
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard.index', absolute: false));
+            // تخزين بيانات إضافية في السيشن
+            session([
+                'user_id' => Auth::guard('admin')->id(),
+                'guard'   => 'admin'
+            ]);
+
+            return redirect()->route('dashboard.index');
+        }
+
+        // لو فشل تسجيل الدخول
+        return back()->withErrors([
+            'email' => 'بيانات الدخول غير صحيحة.',
+        ]);
     }
 
     /**
@@ -36,14 +52,9 @@ class AuthAdminController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-
-
         Auth::guard('admin')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('/');
     }
 }

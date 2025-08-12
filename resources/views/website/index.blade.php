@@ -34,8 +34,6 @@
                     <ul class="navbar-nav me-auto">
                         @auth
                             <li class="nav-item">
-
-
                                 @if (Auth::guard('admin'))
                                     <form action="{{ route('dashboard.logout') }}" method="POST" class="mb-0">
                                     @else
@@ -48,7 +46,18 @@
                                 </button>
                                 </form>
                             </li>
+
+
+                            <li class="nav-item">
+
+                                <a href="{{ route('dashboard.index') }}" class="nav-link active" type="submit"
+                                    aria-current="page">
+                                    <i class="fa-solid fa-gauge text-primary"></i></i>
+                                    لوحة التحكم
+                                </a>
+                            </li>
                         @endauth
+
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{ route('login') }}">الدخول
@@ -64,7 +73,7 @@
                 </div>
                 <div class="navbar-brand float-end">
                     <!-- اللوجو / البراند على الشمال -->
-                    <a class="navbar-brand ms-auto" href="#">Backlink</a>
+                    <a class="navbar-brand ms-auto" href="{{ route('web-site.index') }}">Backlink</a>
                 </div>
                 </ul>
             </div>

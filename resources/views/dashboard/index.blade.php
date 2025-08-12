@@ -1,3 +1,4 @@
+
 @extends('dashboard.layouts.master')
 @section('title', 'لوحة التحكم')
 @section('content')
@@ -5,16 +6,13 @@
         <div class="layout-specing">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    @if (auth()->guard('admin'))
-                    <h6 class="text-muted mb-1">Welcome back, Admin!</h6>
-
+                    @if (auth()->guard('admin')->check())
+                        <h6 class="text-muted mb-1">Welcome back, Admin!</h6>
                     @else
-                    <h6 class="text-muted mb-1">Welcome back, User!</h6>
-
+                        <h6 class="text-muted mb-1">Welcome back, User!</h6>
                     @endif
                     <h5 class="mb-0">Dashboard</h5>
                 </div>
-
                 <div class="mb-0 position-relative">
                     <select class="form-select form-control" id="dailychart">
                         <option selected="">This Month</option>

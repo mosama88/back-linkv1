@@ -16,6 +16,7 @@ class Admin extends Authenticatable
 
     protected $table = 'admins';
 
+    protected $guardAdmin = 'admin'; // This ensures the model uses the 'admin' guard
 
     /**
      * The attributes that are mass assignable.

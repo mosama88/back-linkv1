@@ -1,3 +1,11 @@
+@php
+    $logoutRoute = null;
+    if (auth('admin')->check()) {
+        $logoutRoute = route('dashboard.logout');
+    } elseif (auth()->check()) {
+        $logoutRoute = route('logout');
+    }
+@endphp
 <div class="top-header">
     <div class="header-bar d-flex justify-content-between">
         <div class="d-flex align-items-center">
@@ -133,17 +141,15 @@
                             الحساب التعريفي</a>
 
                         <div class="dropdown-divider border-top"></div>
-                        @if (Auth::guard('admin'))
-                            <form action="{{ route('dashboard.logout') }}" method="POST" class="mb-0">
-                            @else
-                                <form action="{{ route('logout') }}" method="POST" class="mb-0">
+                        @if ($logoutRoute)
+                            <form action="{{ $logoutRoute }}" method="POST" class="mb-0">
+                                @csrf
+                                <button type="submit" class="dropdown-item text-dark">
+                                    <span class="mb-0 d-inline-block me-1"><i class="ti ti-logout"></i></span>
+                                    تسجيل الخروج
+                                </button>
+                            </form>
                         @endif
-                            @csrf
-                            <button type="submit" class="dropdown-item text-dark">
-                                <span class="mb-0 d-inline-block me-1"><i class="ti ti-logout"></i></span>
-                                تسجيل الخروج</a>
-                            </button>
-                        </form>
                     </div>
                 </div>
             </li>
