@@ -1,3 +1,6 @@
+@php
+    use App\Enums\ActiveEnum;
+@endphp
 @extends('dashboard.layouts.master')
 @section('title', 'صفحة المستخدمين')
 @section('content')
@@ -63,7 +66,7 @@
                                 {{ $info->user_type->label() }}
                             </td>
                             <td class="text-center p-3">
-                                @if ($info->active == \App\Enums\ActiveEnum::ACTIVE)
+                                @if ($info->active == ActiveEnum::ACTIVE)
                                     <div class="badge bg-soft-success rounded px-3 py-1">
                                         {{ $info->active->label() }}
                                     </div>
