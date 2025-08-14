@@ -20,8 +20,8 @@ return new class extends Migration
             $table->decimal('remain_balance', 10, 2); //200
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->tinyInteger('active')->default(1);
-            $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
-            $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
+            $table->foreignId('created_by')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreignId('updated_by')->nullable()->references('id')->on('users')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(100)->create();
 
         User::create([
             'name' => 'Mohamed Osama',
@@ -24,6 +23,7 @@ class DatabaseSeeder extends Seeder
             'mobile' => '01228759920',
         ]);
 
+        User::factory(100)->create();
 
     }
 }

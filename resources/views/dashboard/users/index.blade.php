@@ -30,6 +30,7 @@
                         <th class="border-bottom p-3" style="min-width: 220px;">الاسم</th>
                         <th class="text-center border-bottom p-3">البريد</th>
                         <th class="text-center border-bottom p-3" style="min-width: 150px;">الموبايل</th>
+                        <th class="text-center border-bottom p-3" style="min-width: 150px;">نوع المستخدم</th>
                         <th class="text-center border-bottom p-3">حالة الحساب</th>
                         <th class="text-end border-bottom p-3" style="min-width: 100px;">الاجراءات</th>
                     </tr>
@@ -59,9 +60,19 @@
                             <td class="text-center p-3">{{ $info->email }}</td>
                             <td class="text-center p-3">{{ $info->mobile }}</td>
                             <td class="text-center p-3">
-                                <div class="badge bg-soft-danger rounded px-3 py-1">
-                                    Unpaid
-                                </div>
+                                {{ $info->user_type->label() }}
+                            </td>
+                            <td class="text-center p-3">
+                                @if ($info->active == \App\Enums\ActiveEnum::ACTIVE)
+                                    <div class="badge bg-soft-success rounded px-3 py-1">
+                                        {{ $info->active->label() }}
+                                    </div>
+                                @else
+                                    <div class="badge bg-soft-danger rounded px-3 py-1">
+                                        {{ $info->active->label() }}
+                                    </div>
+                                @endif
+
                             </td>
                             <td class="text-end p-3">
                                 <a href="invoice.html" class="btn btn-sm btn-primary">Preview</a>
@@ -70,9 +81,11 @@
                     @empty
                         data not found
                     @endforelse
-
                 </tbody>
             </table>
+            <div class="d-flex justify-content-left mt-4">
+                {{ $data->links() }}
+            </div>
             <!-- table /-->
 
         </div>

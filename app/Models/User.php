@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Enums\ActiveEnum;
+use App\Enums\UserTypeEnum;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Image\Enums\Fit;
@@ -46,6 +47,7 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at',
         'password',
         'mobile',
+        'user_type',
         'active',
         'remember_token'
     ];
@@ -82,6 +84,7 @@ class User extends Authenticatable implements HasMedia
     {
         return [
             'active' => ActiveEnum::class,
+            'user_type' => UserTypeEnum::class,
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
