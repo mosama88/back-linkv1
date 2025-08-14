@@ -1,11 +1,3 @@
-@php
-    $logoutRoute = null;
-    if (auth('admin')->check()) {
-        $logoutRoute = route('dashboard.logout');
-    } elseif (auth()->check()) {
-        $logoutRoute = route('logout');
-    }
-@endphp
 <div class="top-header">
     <div class="header-bar d-flex justify-content-between">
         <div class="d-flex align-items-center">
@@ -136,20 +128,18 @@
                             </div>
                         </a>
 
-                        <a class="dropdown-item text-dark" href="{{ route('profile.edit') }}"><span
+                        <a class="dropdown-item text-dark" href="{{ route('dashboard.profile.edit') }}"><span
                                 class="mb-0 d-inline-block me-1"><i class="ti ti-settings"></i></span>
                             الحساب التعريفي</a>
 
                         <div class="dropdown-divider border-top"></div>
-                        @if ($logoutRoute)
-                            <form action="{{ $logoutRoute }}" method="POST" class="mb-0">
-                                @csrf
-                                <button type="submit" class="dropdown-item text-dark">
-                                    <span class="mb-0 d-inline-block me-1"><i class="ti ti-logout"></i></span>
-                                    تسجيل الخروج
-                                </button>
-                            </form>
-                        @endif
+                        <form action="{{ route('logout') }}" method="POST" class="mb-0">
+                            @csrf
+                            <button type="submit" class="dropdown-item text-dark">
+                                <span class="mb-0 d-inline-block me-1"><i class="ti ti-logout"></i></span>
+                                تسجيل الخروج
+                            </button>
+                        </form>
                     </div>
                 </div>
             </li>

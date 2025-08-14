@@ -1,4 +1,3 @@
-
 @extends('dashboard.layouts.master')
 @section('title', 'لوحة التحكم')
 @section('content')
@@ -6,11 +5,7 @@
         <div class="layout-specing">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    @if (auth()->guard('admin')->check())
-                        <h6 class="text-muted mb-1">Welcome back, Admin!</h6>
-                    @else
-                        <h6 class="text-muted mb-1">Welcome back, User!</h6>
-                    @endif
+                    <h6 class="text-muted mb-1">Welcome back, {{ Auth::user()->name }}!</h6>
                     <h5 class="mb-0">Dashboard</h5>
                 </div>
                 <div class="mb-0 position-relative">

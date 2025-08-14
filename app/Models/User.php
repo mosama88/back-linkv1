@@ -8,14 +8,31 @@ use Illuminate\Notifications\Notifiable;
 use App\Enums\ActiveEnum;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasSlug;
+    use HasFactory, Notifiable, HasSlug, InteractsWithMedia;
 
     protected $table = 'users';
 
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Fit::Contain, 300, 300)
+            ->nonQueued();
+    }
+
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('photo')->singleFile();
+    }
 
     /**
      * The attributes that are mass assignable.

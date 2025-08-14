@@ -1,9 +1,9 @@
     <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
         <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
             <div class="sidebar-brand">
-                <a href="index.html">
+                <a href="{{route('web-site.index')}}">
                     <img src="{{ asset('dashboard') }}/assets/images/logo-dark.png" height="24" class="logo-light-mode"
-                        alt="">
+                        alt="">Back-Link
                     <img src="{{ asset('dashboard') }}/assets/images/logo-light.png" height="24"
                         class="logo-dark-mode" alt="">
                     <span class="sidebar-colored">
