@@ -16,7 +16,7 @@ class Balanceontroller extends Controller
      */
     public function index()
     {
-        $data = Balance::orderByDesc('id')->paginate();
+        $data = Balance::with('user')->orderByDesc('id')->paginate();
         return view('dashboard.balances.index', compact('data'));
     }
 

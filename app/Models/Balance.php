@@ -25,11 +25,15 @@ class Balance extends Model
         'updated_by'
     ];
 
+    public function getUserNameForSlugAttribute()
+    {
+        return $this->user ? $this->user->name : 'غير معروف';
+    }
 
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('name')
+            ->generateSlugsFrom('user_name_for_slug') // اسم الـ accessor
             ->saveSlugsTo('slug');
     }
 

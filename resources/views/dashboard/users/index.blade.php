@@ -31,7 +31,7 @@
                     <tr>
                         <th class="border-bottom p-3">#</th>
                         <th class="border-bottom p-3" style="min-width: 220px;">الاسم</th>
-                        <th class="text-center border-bottom p-3">البريد</th>
+                        <th class="text-center border-bottom p-3">البريد الالكترونى</th>
                         <th class="text-center border-bottom p-3" style="min-width: 150px;">الموبايل</th>
                         <th class="text-center border-bottom p-3" style="min-width: 150px;">نوع المستخدم</th>
                         <th class="text-center border-bottom p-3">حالة الحساب</th>

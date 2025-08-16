@@ -21,19 +21,7 @@ class User extends Authenticatable implements HasMedia
 
     protected $table = 'users';
 
-    public function registerMediaConversions(?Media $media = null): void
-    {
-        $this
-            ->addMediaConversion('preview')
-            ->fit(Fit::Contain, 300, 300)
-            ->nonQueued();
-    }
 
-
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('photo')->singleFile();
-    }
 
     /**
      * The attributes that are mass assignable.
@@ -51,6 +39,21 @@ class User extends Authenticatable implements HasMedia
         'active',
         'remember_token'
     ];
+
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Fit::Contain, 300, 300)
+            ->nonQueued();
+    }
+
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('photo')->singleFile();
+    }
 
     public function getSlugOptions(): SlugOptions
     {
