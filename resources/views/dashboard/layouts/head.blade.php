@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="{{asset('dashboard')}}/assets/images/favicon.ico" />
     <!-- Css -->
     <link href="{{asset('dashboard')}}/assets/libs/simplebar/simplebar.min.css" rel="stylesheet">
+    <link href="{{asset('dashboard')}}/assets/css/all.min.css" rel="stylesheet">
     <!-- Bootstrap Css -->
     <link href="{{asset('dashboard')}}/assets/css/bootstrap-rtl.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->

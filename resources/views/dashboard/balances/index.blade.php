@@ -6,9 +6,10 @@
 @section('content')
 
 
-
     <div class="container-fluid">
         <div class="layout-specing">
+  
+@include('dashboard.layouts.messages')
 
             <!-- breadcrumb -->
             <div class="d-md-flex justify-content-between align-items-center">
@@ -23,7 +24,10 @@
                 </nav>
             </div>
             <!-- breadcrumb /-->
-
+            <div class="my-4">
+                <a href="{{ route('dashboard.balances.create') }}" class="btn btn-primary"> <i
+                        class="fa-solid fa-plus me-2"></i> جديد </a>
+            </div>
 
             <!-- table -->
             <table class="table table-center bg-white mb-0">
@@ -60,7 +64,7 @@
 
 
 
-                                        @php
+                                        {{-- @php
                                             $user = $info->user->name ?? null;
                                         @endphp
 
@@ -83,7 +87,7 @@
                                             <img class="img-thumbnail rounded-circle"
                                                 src="{{ asset('dashboard/assets/img/Employee.png') }}"
                                                 style="width: 70px; height: 70px; object-fit: cover;" alt="لا يوجد موظف">
-                                        @endif
+                                        @endif --}}
 
 
 
@@ -107,7 +111,36 @@
                                 @endif
                             </td>
                             <td class="text-end p-3">
-                                <a href="invoice.html" class="btn btn-sm btn-primary">Preview</a>
+
+
+                                <div class="btn-group dropdown-primary me-2 mt-2">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa-solid fa-hexagon-nodes-bolt me-2"></i> الأجراءات
+
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a href="javascript:void(0)" class="dropdown-item text-info">
+                                            <i class="fa-solid text-info fa-pen-to-square me-2"></i>
+                                            تعديل
+                                        </a>
+                                        <a href="javascript:void(0)" class="dropdown-item text-danger">
+                                            <i class="fa-solid fa-trash-can me-2"></i>
+                                            حذف الحساب
+                                        </a>
+                                        <a href="javascript:void(0)" class="dropdown-item text-dark">
+                                            <i class="fa-solid fa-eye me-2"></i>
+                                            عرض البيانات
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)" class="dropdown-item text-danger">
+                                            <i class="fa-solid fa-bug-slash  me-2"></i>
+                                            تعطيل الحساب
+                                        </a>
+                                    </div>
+                                </div>
+
+
                             </td>
                         </tr>
                     @empty

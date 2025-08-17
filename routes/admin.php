@@ -11,6 +11,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', function () {
             return view('dashboard.index');
         })->name('index');
+        // Route::get('/balance/search', [Balanceontroller::class, 'search'])->name('balances.search');
 
         //--------------------------------------------------------------------- Users
         Route::resource('users', AuthenticatedSessionController::class);

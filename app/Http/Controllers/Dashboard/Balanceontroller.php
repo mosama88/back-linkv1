@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Models\User;
 use App\Models\Balance;
+use App\Enums\ActiveEnum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +39,9 @@ class Balanceontroller extends Controller
             $user = Auth::user()->id;
             $validated = $request->validated();
             $dataInsert = array_merge($validated, [
+                'used_balance' => 0,
+                'remain_balance' => $request->balance,
+                'active' => ActiveEnum::ACTIVE,
                 'created_by' => $user,
             ]);
             $balance->create($dataInsert);
@@ -95,5 +100,28 @@ class Balanceontroller extends Controller
         } catch (Exception $ex) {
             return redirect()->route('dashboard.balances.index')->withErrors(['errors' => 'عفوآ حدث خطأ'])->withInput();
         }
+    }
+
+
+
+
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+
+        $users = User::select('id', 'name', 'mobile')
+            ->where('name', 'LIKE', "%$query%")
+            ->orWhere('mobile', 'LIKE', "%$query%")
+            ->limit(5)
+            ->get();
+
+        return response()->json([
+            'results' => $users->map(function ($user) {
+                return [
+                    'id' => $user->id,
+                    'text' => $user->name . ' - ' . $user->mobile
+                ];
+            })
+        ]);
     }
 }

@@ -1,7 +1,7 @@
     <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
         <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
             <div class="sidebar-brand">
-                <a href="{{route('web-site.index')}}">
+                <a href="{{ route('web-site.index') }}">
                     <img src="{{ asset('dashboard') }}/assets/images/logo-dark.png" height="24" class="logo-light-mode"
                         alt="">Back-Link
                     <img src="{{ asset('dashboard') }}/assets/images/logo-light.png" height="24"
@@ -14,17 +14,20 @@
 
             <ul class="sidebar-menu">
                 <li>
-                    <a href="{{ route('dashboard.index') }}"><i class="ti ti-home me-2"></i>لوحة التحكم</a>
+                    <a href="{{ route('dashboard.index') }}"><i class="fa-solid fa-house me-2"></i>لوحة التحكم</a>
                 </li>
                 <li>
-                    <a href="{{ route('dashboard.balances.index') }}"><i class="ti ti-home me-2"></i>الرصيد</a>
+                    <a href="{{ route('dashboard.balances.index') }}"><i
+                            class="fa-solid fa-scale-unbalanced me-2"></i>الرصيد</a>
                 </li>
                 <li>
-                    <a href="{{ route('dashboard.back-links.index') }}"><i class="ti ti-home me-2"></i>الروابط
+                    <a href="{{ route('dashboard.back-links.index') }}">
+                        <i class="fa-solid fa-link me-2"></i>
+                        الروابط
                         الخلفية</a>
                 </li>
                 <li class="sidebar-dropdown">
-                    <a href="javascript:void(0)"><i class="ti ti-browser me-2"></i>المستخدمين</a>
+                    <a href="javascript:void(0)"><i class="fa-solid fa-users me-2"></i>المستخدمين</a>
                     <div class="sidebar-submenu">
                         <ul>
                             <li><a href="{{ route('dashboard.users.index') }}">المستخدمين</a></li>
