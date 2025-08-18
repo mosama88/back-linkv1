@@ -35,14 +35,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
+                                        <input type="hidden" name="user_id" id="hidden_user_search_id">
+
                                         <label class="form-label">أسم المستخدم<span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <i data-feather="user" class="fea icon-sm icons"></i>
-
-                                            <input name="user_id" id="user_search" type="text"
+                                            <input name="user_id_search" id="user_search_id" type="text"
                                                 value="{{ old('user_id') }}"
                                                 class="form-control user_search ps-5 @error('user_id') is-invalid @enderror"
-                                                placeholder="First Name :" autocomplete="off">
+                                                placeholder="أسم المستخدم او البريد :" autocomplete="off">
 
                                             @error('user_id')
                                                 <span class="invalid-feedback text-right" role="alert">
@@ -91,25 +92,39 @@
 @push('js')
     <!-- jQuery (الإصدار 3.x الموصى به لـ Select2) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+
+
     <script>
-        $('.user_search').select2({
-            ajax: {
-                url: "{{ route('dashboard.balances.search') }}",
-                dataType: 'json',
-                delay: 250, // adds delay to reduce requests
-                data: function(params) {
-                    return {
-                        q: params.term // 'term' is what Select2 uses for the search term
-                    };
+        $(document).ready(function() {
+            $("#user_search_id").autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "{{ route('dashboard.balances.search-user') }}",
+                        dataType: "json",
+                        data: {
+                            q: request.term
+                        },
+                        success: function(data) {
+                            response(data.data.map(function(item) {
+                                return {
+                                    label: item.name,
+                                    value: item
+                                        .name, // يعرض الاسم داخل الـ input
+                                    id: item.id // لو حبيت تخزنه في hidden field
+                                };
+                            }));
+                        }
+                    });
                 },
-                processResults: function(data) {
-                    // Map your results to the format expected by Select2
-                    return {
-                        results: data.results
-                    };
+                minLength: 2,
+                select: function(event, ui) {
+                    // لو عايز تخزن id في input مخفي مثلاً
+                    $('#hidden_user_search_id').val(ui.item.id);
                 }
-            },
-            minimumInputLength: 1 // wait until at least 1 character is entered
+            });
         });
     </script>
 @endpush

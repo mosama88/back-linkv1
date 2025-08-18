@@ -105,23 +105,14 @@ class Balanceontroller extends Controller
 
 
 
-    public function search(Request $request)
-    {
-        $query = $request->input('q');
 
-        $users = User::select('id', 'name', 'mobile')
-            ->where('name', 'LIKE', "%$query%")
-            ->orWhere('mobile', 'LIKE', "%$query%")
-            ->limit(5)
-            ->get();
+
+    public function searchUser(Request $request)
+    {
+        $users = User::select("*")->where('name', 'LIKE', '%' . $request->q . '%')->orWhere('email', 'LIKE', '%' . $request->q . '%')->limit(5)->get();
 
         return response()->json([
-            'results' => $users->map(function ($user) {
-                return [
-                    'id' => $user->id,
-                    'text' => $user->name . ' - ' . $user->mobile
-                ];
-            })
+            'data' => $users
         ]);
     }
 }

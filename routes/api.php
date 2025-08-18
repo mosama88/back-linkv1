@@ -9,4 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::get('/balance/search', [Balanceontroller::class, 'search'])->name('dashboard.balances.search');
+Route::get('/balance/search', [Balanceontroller::class, 'searchUser'])->name('dashboard.balances.search-user');
