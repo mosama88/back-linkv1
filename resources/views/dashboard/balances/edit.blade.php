@@ -37,8 +37,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <input hidden type="text" name="user_id" value="{{ old('user_id', $balance->user_id) }}"
-                                            id="hidden_user_search_id">
+                                        <input hidden type="text" name="user_id"
+                                            value="{{ old('user_id', $balance->user_id) }}" id="hidden_user_search_id">
 
                                         <label class="form-label">أسم المستخدم<span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
@@ -65,6 +65,36 @@
                                             class="form-control @error('balance') is-invalid @enderror"
                                             placeholder="الرصيد:" oninput="this.value=this.value.replace(/[^0-9.]/g,'');">
                                         @error('balance')
+                                            <span class="invalid-feedback text-right" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div><!--end col-->
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">الرصيد المستخدم<span class="text-danger">*</span></label>
+                                        <input readonly name="used_balance" id="used_balance" type="used_balance"
+                                            value="{{ old('used_balance', $balance->used_balance) }}"
+                                            class="form-control @error('used_balance') is-invalid @enderror"
+                                            placeholder="الرصيد:" oninput="this.value=this.value.replace(/[^0-9.]/g,'');">
+                                        @error('used_balance')
+                                            <span class="invalid-feedback text-right" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div><!--end col-->
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">الرصيد المتبقى<span class="text-danger">*</span></label>
+                                        <input readonly name="remain_balance" id="remain_balance" type="remain_balance"
+                                            value="{{ old('remain_balance', $balance->remain_balance) }}"
+                                            class="form-control @error('remain_balance') is-invalid @enderror"
+                                            placeholder="الرصيد:" oninput="this.value=this.value.replace(/[^0-9.]/g,'');">
+                                        @error('remain_balance')
                                             <span class="invalid-feedback text-right" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

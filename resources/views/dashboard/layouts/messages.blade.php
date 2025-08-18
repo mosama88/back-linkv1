@@ -18,3 +18,17 @@
         @endforeach
     </div>
 @endif
+@push('js')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            document.querySelectorAll('.alert').forEach(function(alert) {
+                alert.style.transition = "opacity 1s";
+                alert.style.opacity = "0";
+                setTimeout(() => alert.remove(), 1000); // يشيل العنصر بعد ما يختفي
+            });
+        }, 5000);
+    });
+</script>
+@endpush
+
