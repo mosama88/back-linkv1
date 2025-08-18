@@ -16,6 +16,7 @@ class Balance extends Model
     protected $table = 'balances';
     protected $fillable = [
         'slug',
+        'add_balance',
         'balance',
         'used_balance',
         'remain_balance',

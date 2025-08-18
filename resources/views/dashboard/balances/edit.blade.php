@@ -59,6 +59,23 @@
 
                                 <div class="col-md-6">
                                     <div class="mb-3">
+                                        <label class="form-label">أضافة رصيد<span class="text-danger">*</span></label>
+                                        <input name="add_balance" id="add_balance" type="add_balance"
+                                            value="{{ old('add_balance', $balance->add_balance) }}"
+                                            class="form-control @error('add_balance') is-invalid @enderror"
+                                            placeholder="أضافة الرصيد:"
+                                            oninput="this.value=this.value.replace(/[^0-9.]/g,'');">
+                                        @error('add_balance')
+                                            <span class="invalid-feedback text-right" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div><!--end col-->
+
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
                                         <label class="form-label">الرصيد<span class="text-danger">*</span></label>
                                         <input name="balance" id="balance" type="balance"
                                             value="{{ old('balance', $balance->balance) }}"

@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('balances', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique();
+            $table->decimal('add_balance', 10, 2)->nullable(); //500
             $table->decimal('balance', 10, 2); //500
             $table->decimal('used_balance', 10, 2); //300
             $table->decimal('remain_balance', 10, 2); //200
