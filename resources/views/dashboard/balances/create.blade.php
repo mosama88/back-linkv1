@@ -30,7 +30,7 @@
             <div class="row my-3">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('dashboard.balances.store') }}" method="POST">
+                        <form action="{{ route('dashboard.balances.store') }}" method="POST" id="storeForm">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -70,10 +70,8 @@
 
                             </div><!--end row-->
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-primary"> <i
-                                            class="fa-solid fa-floppy-disk me-2"></i>تأكيد البيانات</button>
-                                </div><!--end col-->
+
+                                <x-create-button></x-create-button>
                             </div><!--end row-->
 
                         </form>

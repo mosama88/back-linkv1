@@ -8,8 +8,8 @@
 
     <div class="container-fluid">
         <div class="layout-specing">
-  
-@include('dashboard.layouts.messages')
+
+            @include('dashboard.layouts.messages')
 
             <!-- breadcrumb -->
             <div class="d-md-flex justify-content-between align-items-center">
@@ -120,15 +120,18 @@
 
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a href="javascript:void(0)" class="dropdown-item text-info">
+                                        <a href="{{ route('dashboard.balances.edit', $info->slug) }}"
+                                            class="dropdown-item text-info">
                                             <i class="fa-solid text-info fa-pen-to-square me-2"></i>
                                             تعديل
                                         </a>
-                                        <a href="javascript:void(0)" class="dropdown-item text-danger">
+                                        <a href="{{ route('dashboard.balances.destroy', $info->slug) }}"
+                                            class="dropdown-item text-danger">
                                             <i class="fa-solid fa-trash-can me-2"></i>
                                             حذف الحساب
                                         </a>
-                                        <a href="javascript:void(0)" class="dropdown-item text-dark">
+                                        <a href="{{ route('dashboard.balances.show', $info->slug) }}"
+                                            class="dropdown-item text-dark">
                                             <i class="fa-solid fa-eye me-2"></i>
                                             عرض البيانات
                                         </a>
