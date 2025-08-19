@@ -27,6 +27,9 @@ class BalanceRequest extends FormRequest
 
         return [
             'user_id' => 'required|exists:users,id',
+            'add_balance' => 'nullable|numeric',
+            'used_balance' => 'nullable|numeric',
+            'remain_balance' => 'nullable|numeric',
             'balance' => 'required|numeric',
             'active' => [
                 'nullable',
@@ -42,6 +45,9 @@ class BalanceRequest extends FormRequest
             'user_id.exists' => 'اسم المستخدم غير موجود',
             'balance.required' => 'الرصيد مطلوب',
             'balance.numeric' => 'يجب أن يكون الرصيد رقماً',
+            'add_balance.numeric' => 'يجب أن يكون أضافة الرصيد رقماً',
+            'used_balance.numeric' => 'يجب أن يكون الرصيد المستخدم رقماً',
+            'remain_balance.numeric' => 'يجب أن يكون  الرصيد المتبقى رقماً',
         ];
     }
 }

@@ -37,6 +37,12 @@ class Balanceontroller extends Controller
     {
         try {
             $user = Auth::user()->id;
+            $userBalanceExists = Balance::where('user_id', $request->user_id)->first();
+            if ($userBalanceExists) {
+                return redirect()->back()
+                    ->withErrors(['errors' => 'هذا المستخدم لديه رصيد بالفعل'])
+                    ->withInput();
+            }
             $validated = $request->validated();
             $dataInsert = array_merge($validated, [
                 'used_balance' => 0,

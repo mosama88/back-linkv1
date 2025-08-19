@@ -9,6 +9,7 @@
 
     <div class="container-fluid">
         <div class="layout-specing">
+            @include('dashboard.layouts.messages')
 
             <!-- breadcrumb -->
             <div class="d-md-flex justify-content-between align-items-center">
@@ -41,7 +42,7 @@
                                         <div class="form-icon position-relative">
                                             <i data-feather="user" class="fea icon-sm icons"></i>
                                             <input name="user_id_search" id="user_search_id" type="text"
-                                                value="{{ old('user_id') }}"
+                                                value="{{ old('user_id_search') }}"
                                                 class="form-control user_search ps-5 @error('user_id') is-invalid @enderror"
                                                 placeholder="أسم المستخدم او البريد :" autocomplete="off">
 

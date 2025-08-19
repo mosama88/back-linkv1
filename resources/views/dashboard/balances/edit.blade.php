@@ -43,7 +43,7 @@
                                         <label class="form-label">أسم المستخدم<span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input name="user_id_search" id="user_search_id" type="text"
+                                            <input readonly type="text"
                                                 value="{{ old('user_id_search', $balance->user->name) }}"
                                                 class="form-control user_search ps-5 @error('user_id') is-invalid @enderror"
                                                 placeholder="أسم المستخدم او البريد :" autocomplete="off">
@@ -60,11 +60,10 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">أضافة رصيد<span class="text-danger">*</span></label>
-                                        <input name="add_balance" id="add_balance" type="add_balance"
+                                        <input name="add_balance" id="add_balance" type="number"
                                             value="{{ old('add_balance', $balance->add_balance) }}"
                                             class="form-control @error('add_balance') is-invalid @enderror"
-                                            placeholder="أضافة الرصيد:"
-                                            oninput="this.value=this.value.replace(/[^0-9.]/g,'');">
+                                            placeholder="أضافة الرصيد:" oninput="calculateBalances()">
                                         @error('add_balance')
                                             <span class="invalid-feedback text-right" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -73,14 +72,13 @@
                                     </div>
                                 </div><!--end col-->
 
-
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">الرصيد<span class="text-danger">*</span></label>
-                                        <input name="balance" id="balance" type="balance"
+                                        <input name="balance" id="balance" type="number"
                                             value="{{ old('balance', $balance->balance) }}"
                                             class="form-control @error('balance') is-invalid @enderror"
-                                            placeholder="الرصيد:" oninput="this.value=this.value.replace(/[^0-9.]/g,'');">
+                                            placeholder="الرصيد:" readonly>
                                         @error('balance')
                                             <span class="invalid-feedback text-right" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -92,10 +90,10 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">الرصيد المستخدم<span class="text-danger">*</span></label>
-                                        <input readonly name="used_balance" id="used_balance" type="used_balance"
+                                        <input readonly name="used_balance" id="used_balance" type="number"
                                             value="{{ old('used_balance', $balance->used_balance) }}"
                                             class="form-control @error('used_balance') is-invalid @enderror"
-                                            placeholder="الرصيد:" oninput="this.value=this.value.replace(/[^0-9.]/g,'');">
+                                            placeholder="الرصيد المستخدم:">
                                         @error('used_balance')
                                             <span class="invalid-feedback text-right" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -107,10 +105,10 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">الرصيد المتبقى<span class="text-danger">*</span></label>
-                                        <input readonly name="remain_balance" id="remain_balance" type="remain_balance"
+                                        <input readonly name="remain_balance" id="remain_balance" type="number"
                                             value="{{ old('remain_balance', $balance->remain_balance) }}"
                                             class="form-control @error('remain_balance') is-invalid @enderror"
-                                            placeholder="الرصيد:" oninput="this.value=this.value.replace(/[^0-9.]/g,'');">
+                                            placeholder="الرصيد المتبقى:">
                                         @error('remain_balance')
                                             <span class="invalid-feedback text-right" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -118,6 +116,8 @@
                                         @enderror
                                     </div>
                                 </div><!--end col-->
+
+
 
                             </div><!--end row-->
                             <div class="row">
@@ -174,5 +174,36 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        function calculateBalances() {
+            // الحصول على قيمة الرصيد المضاف
+            const addBalance = parseFloat(document.getElementById('add_balance').value) || 0;
+
+            // الحصول على قيمة الرصيد الحالي (إذا كان موجوداً)
+            const currentBalance = parseFloat(document.getElementById('balance').value) || 0;
+
+            // الحصول على قيمة الرصيد المستخدم (إذا كان موجوداً)
+            const usedBalance = parseFloat(document.getElementById('used_balance').value) || 0;
+
+            // حساب الرصيد الجديد (الرصيد الحالي + الرصيد المضاف)
+            const newBalance = currentBalance + addBalance;
+
+            // حساب الرصيد المتبقي (الرصيد الجديد - الرصيد المستخدم)
+            const remainBalance = newBalance - usedBalance;
+
+            // تحديث القيم في الحقول
+            document.getElementById('balance').value = newBalance.toFixed(2);
+            document.getElementById('remain_balance').value = remainBalance.toFixed(2);
+
+            // إذا كنت تريد إعادة تعيين حقل إضافة الرصيد بعد الحساب:
+            // document.getElementById('add_balance').value = '';
+        }
+
+        // يمكنك أيضاً استدعاء الدالة عند تحميل الصفحة للتعامل مع القيم الأولية
+        window.onload = function() {
+            calculateBalances();
+        };
     </script>
 @endpush
