@@ -97,18 +97,24 @@ class Balanceontroller extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy(Balance $balance)
     {
         try {
+
             $balance->delete();
-            return redirect()->route('dashboard.balances.index')
-                ->with('success', 'تم حذف الرصيد بنجاح');
-        } catch (Exception $ex) {
-            return redirect()->route('dashboard.balances.index')->withErrors(['errors' => 'عفوآ حدث خطأ'])->withInput();
+            return response()->json([
+                'success' => true,
+                'message' => 'تم حذف الرصيد بنجاح'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'حدث خطأ أثناء محاولة الحذف',
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
-
-
 
 
 

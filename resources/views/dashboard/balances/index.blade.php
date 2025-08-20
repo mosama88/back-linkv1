@@ -50,45 +50,36 @@
                             <td class="p-3">
                                 <a href="#" class="text-primary">
                                     <div class="d-flex align-items-center">
-                                        {{-- @if ($info->getFirstMediaUrl('photo', 'preview'))
-                                            <img class="avatar avatar-ex-small rounded-circle shadow"
-                                                src="{{ $info->getFirstMediaUrl('photo', 'preview') }}"
-                                                alt="{{ $info->name }}">
-                                        @else
-                                            <img class="avatar avatar-ex-small rounded-circle shadow"
-                                                src="{{ asset('dashboard') }}/assets/images/client/user-default.png"
-                                                alt="{{ $info->name }}">
-                                        @endif --}}
+
+                                        <a href="#" class="text-primary">
+                                            <div class="d-flex align-items-center">
+                                                @php
+                                                    $user = $info->user ?? null;
+                                                @endphp
+
+                                                @if ($user)
+                                                    @php
+                                                        $photoUrl = $user->getFirstMediaUrl('photo', 'preview');
+                                                    @endphp
+
+                                                    @if ($photoUrl)
+                                                        <img class="avatar avatar-ex-small rounded-circle shadow"
+                                                            src="{{ $photoUrl }}" alt="{{ $user->name }}">
+                                                    @else
+                                                        <img class="avatar avatar-ex-small rounded-circle shadow"
+                                                            src="{{ asset('dashboard/assets/images/client/user-default.png') }}"
+                                                            alt="صورة افتراضية">
+                                                    @endif
+                                                @else
+                                                    <img class="avatar avatar-ex-small rounded-circle shadow"
+                                                        src="{{ asset('dashboard/assets/images/client/user-default.png') }}"
+                                                        alt="لا يوجد موظف">
+                                                @endif
 
 
-
-
-
-                                        {{-- @php
-                                            $user = $info->user->name ?? null;
-                                        @endphp
-
-                                        @if ($user)
-                                            @php
-                                                $photoUrl = $user->getFirstMediaUrl('photo', 'preview');
-                                            @endphp
-
-                                            @if ($photoUrl)
-                                                <img class="img-thumbnail rounded-circle" src="{{ $photoUrl }}"
-                                                    style="width: 70px; height: 70px; object-fit: cover;"
-                                                    alt="{{ $user->name }}">
-                                            @else
-                                                <img class="img-thumbnail rounded-circle"
-                                                    src="{{ asset('dashboard/assets/img/Employee.png') }}"
-                                                    style="width: 70px; height: 70px; object-fit: cover;"
-                                                    alt="صورة افتراضية">
-                                            @endif
-                                        @else
-                                            <img class="img-thumbnail rounded-circle"
-                                                src="{{ asset('dashboard/assets/img/Employee.png') }}"
-                                                style="width: 70px; height: 70px; object-fit: cover;" alt="لا يوجد موظف">
-                                        @endif --}}
-
+                                                {{-- <span class="ms-2">{{ $info->user->name }}</span> --}}
+                                            </div>
+                                        </a>
 
 
                                         <span class="ms-2">{{ $info->user->name }}</span>
@@ -120,26 +111,16 @@
 
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a href="{{ route('dashboard.balances.edit', $info->slug) }}"
-                                            class="dropdown-item text-info">
-                                            <i class="fa-solid text-info fa-pen-to-square me-2"></i>
-                                            تعديل
-                                        </a>
-                                        <a href="{{ route('dashboard.balances.destroy', $info->slug) }}"
-                                            class="dropdown-item text-danger">
-                                            <i class="fa-solid fa-trash-can me-2"></i>
-                                            حذف الحساب
-                                        </a>
-                                        <a href="{{ route('dashboard.balances.show', $info->slug) }}"
-                                            class="dropdown-item text-dark">
-                                            <i class="fa-solid fa-eye me-2"></i>
-                                            عرض البيانات
-                                        </a>
+                                        @include('dashboard.partials.actions', [
+                                            'name' => 'balances',
+                                            'name_id' => $info->slug,
+                                        ])
                                         <div class="dropdown-divider"></div>
-                                        <a href="javascript:void(0)" class="dropdown-item text-danger">
-                                            <i class="fa-solid fa-bug-slash  me-2"></i>
+                                        <a href="javascript:void(0)" class="dropdown-item text-primary">
+                                            <i class="fa-solid fa-bug-slash me-2"></i>
                                             تعطيل الحساب
                                         </a>
+
                                     </div>
                                 </div>
 
