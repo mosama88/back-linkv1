@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Balance;
+use App\Models\BackLink;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
 
         // User::factory(100)->create();
         Balance::factory(100)->create();
+        BackLink::factory(1000)->create();
     }
 }
