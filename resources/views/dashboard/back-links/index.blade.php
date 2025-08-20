@@ -25,7 +25,7 @@
             </div>
             <!-- breadcrumb /-->
             <div class="my-4">
-                <a href="{{ route('dashboard.balances.create') }}" class="btn btn-primary"> <i
+                <a href="{{ route('dashboard.back-links.create') }}" class="btn btn-primary"> <i
                         class="fa-solid fa-plus me-2"></i> جديد </a>
             </div>
 
@@ -34,12 +34,11 @@
                 <thead>
                     <tr>
                         <th class="border-bottom p-3">#</th>
-                        <th class="border-bottom p-3" style="min-width: 220px;">أسم المستخدم</th>
+                        <th class="border-bottom p-3" style="min-width: 220px;">الأسم</th>
                         <th class="text-center border-bottom p-3">البريد الالكترونى</th>
-                        <th class="text-center border-bottom p-3" style="min-width: 150px;">أجمالى الروابط الخلفية</th>
-                        <th class="text-center border-bottom p-3" style="min-width: 150px;">الروابط الخلفية المستخدم</th>
-                        <th class="text-center border-bottom p-3" style="min-width: 150px;">الروابط الخلفية المتبقى</th>
-                        <th class="text-center border-bottom p-3">حالة الحساب</th>
+                        <th class="text-center border-bottom p-3" style="min-width: 150px;">الرابط</th>
+                        <th class="text-center border-bottom p-3" style="min-width: 150px;">قيمة الرابط</th>
+                        <th class="text-center border-bottom p-3" style="min-width: 150px;">متاح</th>
                         <th class="text-end border-bottom p-3" style="min-width: 100px;">الاجراءات</th>
                     </tr>
                 </thead>
@@ -47,10 +46,10 @@
                     @forelse ($data as $info)
                         <tr>
                             <th class="p-3">{{ $loop->iteration }}</th>
-                            <td class="text-center p-3">{{ $info->user->email }}</td>
-                            <td class="text-center p-3">{{ $info->balance }}</td>
-                            <td class="text-center p-3">{{ $info->used_balance }}</td>
-                            <td class="text-center p-3">{{ $info->remain_balance }}</td>
+                            <td class="text-center p-3">{{ $info->name }}</td>
+                            <td class="text-center p-3">{{ $info->email }}</td>
+                            <td class="text-center p-3">{{ $info->url }}</td>
+                            <td class="text-center p-3">{{ $info->value }}</td>
                             <td class="text-center p-3">
                                 @if ($info->active == ActiveEnum::ACTIVE)
                                     <div class="badge bg-soft-success rounded px-3 py-1">
@@ -73,7 +72,7 @@
                                     </button>
                                     <div class="dropdown-menu">
                                         @include('dashboard.partials.actions', [
-                                            'name' => 'balances',
+                                            'name' => 'back-links',
                                             'name_id' => $info->slug,
                                         ])
                                         <div class="dropdown-divider"></div>

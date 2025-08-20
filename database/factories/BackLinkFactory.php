@@ -27,10 +27,11 @@ class BackLinkFactory extends Factory
     public function definition(): array
     {
         return [
-            'balance' => $balance = fake()->randomFloat(2, 100, 1000),
-            'used_balance' => $used_balance = abs(fake()->randomFloat(2, 100, 1000) - $balance),
-            'remain_balance' => abs($balance - $used_balance),
-            'user_id' => User::all()->random()->id,
+            'name' => fake()->name(),
+            'url' => fake()->unique()->url(),
+            'email' => fake()->unique()->safeEmail(),
+            'password' => static::$password ??= Hash::make('password'),
+            'value' => fake()->randomFloat(1, 50, 300),
             'active' => ActiveEnum::ACTIVE,
             'created_by' => 1,
         ];

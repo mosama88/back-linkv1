@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // User::factory(100)->create();
-        Balance::factory(100)->create();
+        // Balance::factory(100)->create();
         BackLink::factory(1000)->create();
     }
 }

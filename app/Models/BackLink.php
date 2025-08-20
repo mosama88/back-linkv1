@@ -13,7 +13,7 @@ class BackLink extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $table = 'balances';
+    protected $table = 'back_links';
     protected $fillable = [
         'name',
         'slug',
