@@ -21,16 +21,17 @@
     <!-- Bootstrap Css -->
     <link href="{{ asset('website') }}/assets/css/bootstrap.min.css" id="bootstrap-style" class="theme-opt"
         rel="stylesheet" type="text/css">
+    <link href="{{ asset('website') }}/assets/css/all.min.css" type="text/css" rel="stylesheet">
     <!-- Icons Css -->
     <link href="{{ asset('website') }}/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet"
         type="text/css">
     <link href="{{ asset('website') }}/assets/libs/@iconscout/unicons/css/line.css" type="text/css" rel="stylesheet">
-    <!--     font-family: DroidKufi-Regular; -->
-    <link href="{{ asset('ar-font') }}/stylesheet.css" type="text/css" rel="stylesheet">
     <!-- Style Css-->
     <link href="{{ asset('website') }}/assets/css/style.min.css" id="color-opt" class="theme-opt" rel="stylesheet"
-        type="text/css">
+    type="text/css">
     <link href="{{ asset('website') }}/assets/css/style-font.css" type="text/css" rel="stylesheet">
+    <!--     font-family: DroidKufi-Regular; -->
+    <link href="{{ asset('ar-font') }}/stylesheet.css" type="text/css" rel="stylesheet">
 
 
 
@@ -55,8 +56,8 @@
             <!-- Logo container-->
             <div>
                 <a class="logo" href="#">
-                    <img src="{{ asset('website') }}/assets/images/logo-dark.png" height="24" class="logo-light-mode"
-                        alt="">
+                    <img src="{{ asset('website') }}/assets/images/logo-dark.png" height="24"
+                        class="logo-light-mode" alt="">
                     <img src="{{ asset('website') }}/assets/images/logo-light.png" height="24"
                         class="logo-dark-mode" alt="">
                 </a>
@@ -78,27 +79,42 @@
                     <!-- End mobile menu toggle-->
                 </div>
             </div>
+            @guest
+                <!--Login button Start-->
+                <ul class="buy-button list-inline mb-0">
+                    <li class="list-inline-item mb-0">
+                        <a class="btn btn-pills btn-primary" href="javascript:void(0)" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                            <i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول
+                        </a>
+                    </li>
+                </ul>
+                <!--Login button End-->
+            @endguest
 
-            <!--Login button Start-->
-            <ul class="buy-button list-inline mb-0">
-                <li class="list-inline-item mb-0">
-                    <a href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                        aria-controls="offcanvasRight">
-               
-                        
-                                تسجيل الدخول
-                    </a>
+            @auth
+                <!--Login button Start-->
+                <ul class="buy-button list-inline mb-0">
+                    <li class="list-inline-item mb-0">
+                        <form action="{{ route('logout') }}" method="POST" class="mb-0">
+                            @csrf
+                            <button type="submit" class="btn btn-pills btn-primary">
+                                <i class="text-white fas fa-power-off mx-1"></i>
+                                تسجيل الخروج
+                            </button>
+                        </form>
+                    </li>
 
-                </li>
+                    <li class="list-inline-item mb-0">
+                        <a class="btn btn-pills btn-info" href="javascript:void(0)" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                            <i class="fa-solid fa-user"></i> البروفايل
+                        </a>
+                    </li>
+                </ul>
+                <!--Login button End-->
+            @endauth
 
-                <li class="list-inline-item ps-1 mb-0">
-                    <a href="https://1.envato.market/landrick" target="_blank">
-                        <div class="btn btn-icon btn-pills btn-primary"><i data-feather="shopping-cart"
-                                class="fea icon-sm"></i></div>
-                    </a>
-                </li>
-            </ul>
-            <!--Login button End-->
 
             <div id="navigation">
                 <!-- Navigation Menu-->
@@ -265,23 +281,38 @@
 
                 <div class="col-lg-7 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <div class="section-title ms-lg-5">
-                        <h4 class="title mb-4">Seamless Operation via Smart SEO</h4>
-                        <p class="text-muted">You can combine all the Landrick templates into a single one, you can
-                            take a component from the Application theme and use it in the Website.</p>
+                        <h4 class="title mb-4">كيف تحصل على Backlinks آمن (أفضل الممارسات)</h4>
+
                         <ul class="list-unstyled mb-0 text-muted">
                             <li class="mb-1"><span class="text-primary h5 me-2"><i
-                                        class="uil uil-check-circle align-middle"></i></span>Digital Marketing
-                                Solutions for Tomorrow</li>
+                                        class="uil uil-check-circle align-middle mx-1"></i></span>أنشئ محتوى عالي
+                                الجودة —
+                                محتوى قابل للمشاركة ويحمل قيمة فعلية (دراسات حالة، أدلة شاملة، أدوات مجانية).
+                            </li>
                             <li class="mb-1"><span class="text-primary h5 me-2"><i
-                                        class="uil uil-check-circle align-middle"></i></span>Our Talented & Experienced
-                                Marketing Agency</li>
+                                        class="uil uil-check-circle align-middle mx-1"></i></span>الـ Guest Posting —
+                                كتابة
+                                مقالات لمواقع موثوقة في مجالك مع رابط يعود لموقعك.
+                            </li>
                             <li class="mb-1"><span class="text-primary h5 me-2"><i
-                                        class="uil uil-check-circle align-middle"></i></span>Create your own skin to
-                                match your brand</li>
+                                        class="uil uil-check-circle align-middle mx-1"></i></span>بناء علاقات — تواصل
+                                مع
+                                مدونين وصحفيين ومواقع متخصصة وقدم محتوى يساعدهم.
+                            </li>
+
+                            <li class="mb-1"><span class="text-primary h5 me-2"><i
+                                        class="uil uil-check-circle align-middle mx-1"></i></span>تجنّب المزارع الروابط
+                                —
+                                شراء روابط من شبكات رديئة قد يؤدي لعقوبات من محركات البحث.
+                            </li>
+
                         </ul>
                         <div class="mt-4">
-                            <a href="javascript:void(0)" class="text-primary p-1 px-2 shadow rounded">Read More <i
-                                    class="uil uil-angle-right-b"></i></a>
+                            <a href="javascript:void(0)" class="text-primary p-1 px-2 shadow rounded">
+                                ملاحظة مهمة: لا تستخدم أساليب "Black Hat" كحشو الكلمات المفتاحية أو المزارع الروابط
+                                — قد تؤدي هذه
+                                الممارسات إلى عقوبات وخفض الترتيب.
+                            </a>
                         </div>
                     </div>
                 </div><!--end col-->
@@ -925,7 +956,8 @@
                         alt="">
                     <div class="card border-0 mt-4" style="z-index: 1">
                         <div class="card-body p-0">
-                            <h4 class="card-title text-center">تسجيل الدخول</h4>
+                            <h4 class="card-title text-center"> <i class="fa-solid fa-right-to-bracket"></i> تسجيل
+                                الدخول</h4>
 
                             <form action="{{ route('login') }}" method="POST" class="login-form mt-4">
                                 @csrf
@@ -1037,6 +1069,7 @@
     <script src="{{ asset('website') }}/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- For Menu -->
     <script src="{{ asset('website') }}/assets/libs/gumshoejs/gumshoe.min.js"></script>
+    <script src="{{ asset('website') }}/assets/js/fontawesome.min.js"></script>
     <!-- SLIDER -->
     <script src="{{ asset('website') }}/assets/libs/tiny-slider/min/tiny-slider.js"></script>
     <!-- Lightbox -->
