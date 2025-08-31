@@ -12,6 +12,10 @@ Route::get('/home', function () {
 })->name('web-site.index-2');
 
 
+Route::get('/contact', function () {
+    return view('website.contact');
+})->name('web-site.contact');
+
 
 Route::middleware(['auth', 'verified'])
     ->group(function () {
