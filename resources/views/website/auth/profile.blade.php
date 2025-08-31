@@ -5,18 +5,22 @@
 
     <!-- Hero Start -->
     <section class="bg-half-170 bg-light d-table w-100"
-        style="background: url('{{ asset('website') }}/assets/images/contact-detail.jpg') center center;">
+        style="background: url('{{ asset('website') }}/assets/images/account/bg.png') center center;">
         <div class="bg-overlay bg-overlay-white"></div>
         <div class="container">
             <div class="row mt-5 justify-content-center">
                 <div class="col-lg-12 text-center">
                     <div class="pages-heading">
-                        <h4 class="title mb-0">Contact Us</h4>
+                        <h4 class="title mb-0">بروفايل</h4>
                     </div>
                 </div> <!--end col-->
             </div><!--end row-->
 
-           @include('website.layouts.breadcrumb')
+            @include('website.layouts.breadcrumb', [
+                'previuosPage' => 'الرئيسية',
+                'currentPage' => 'بروفايل',
+            ])
+
         </div> <!--end container-->
     </section><!--end section-->
     <!-- Hero End -->

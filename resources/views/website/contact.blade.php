@@ -10,12 +10,15 @@
             <div class="row mt-5 justify-content-center">
                 <div class="col-lg-12 text-center">
                     <div class="pages-heading">
-                        <h4 class="title mb-0">Contact Us</h4>
+                        <h4 class="title mb-0">أتصل بنا</h4>
                     </div>
                 </div> <!--end col-->
             </div><!--end row-->
 
-            @include('website.layouts.breadcrumb')
+            @include('website.layouts.breadcrumb', [
+                'previuosPage' => 'الرئيسية',
+                'currentPage' => 'أتصل بنا',
+            ])
 
         </div> <!--end container-->
     </section><!--end section-->
@@ -35,10 +38,10 @@
     <section class="section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6  mt-4 pt-2">
+                <div class="col-lg-8 col-md-10 mt-8 pt-2 mx-auto">
                     <div class="card shadow rounded border-0">
                         <div class="card-body py-5">
-                            <h4 class="card-title">Get In Touch !</h4>
+                            <h4 class="card-title">تواصل معنا الآن !</h4>
                             <div class="custom-form mt-3">
                                 <form method="post" name="myForm" id="myForm" onsubmit="return validateForm()">
                                     <p id="error-msg" class="mb-0"></p>
@@ -46,73 +49,67 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Your Name <span
-                                                        class="text-danger">*</span></label>
+                                                <label class="form-label">أسمك<span class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
                                                     <i data-feather="user" class="fea icon-sm icons"></i>
                                                     <input name="name" id="name" type="text"
-                                                        class="form-control ps-5" placeholder="Name :">
+                                                        class="form-control" placeholder="أسمك :">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Your Email <span
+                                                <label class="form-label">البريد الالكترونى <span
                                                         class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
                                                     <i data-feather="mail" class="fea icon-sm icons"></i>
                                                     <input name="email" id="email" type="email"
-                                                        class="form-control ps-5" placeholder="Email :">
+                                                        class="form-control" placeholder="البريد الالكترونى :">
                                                 </div>
                                             </div>
                                         </div><!--end col-->
 
                                         <div class="col-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Subject</label>
+                                                <label class="form-label">الموضوع</label>
                                                 <div class="form-icon position-relative">
                                                     <i data-feather="book" class="fea icon-sm icons"></i>
-                                                    <input name="subject" id="subject" class="form-control ps-5"
-                                                        placeholder="subject :">
+                                                    <input name="subject" id="subject" class="form-control"
+                                                        placeholder="الموضوع :">
                                                 </div>
                                             </div>
                                         </div><!--end col-->
 
                                         <div class="col-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Comments <span
+                                                <label class="form-label">ملاحظاتك <span
                                                         class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
                                                     <i data-feather="message-circle" class="fea icon-sm icons clearfix"></i>
-                                                    <textarea name="comments" id="comments" rows="4" class="form-control ps-5" placeholder="Message :"></textarea>
+                                                    <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="ملاحظاتك :"></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row text-center">
                                         <div class="col-12">
-                                            <div class="d-grid">
-                                                <button type="submit" id="submit" name="send"
-                                                    class="btn btn-primary">Send Message</button>
-                                            </div>
-                                        </div><!--end col-->
-                                    </div><!--end row-->
+                                            <button type="submit" class="btn btn-pills btn-primary">
+                                                <i class="fa-solid fa-paper-plane mx-1"></i>
+                                                إرسال
+                                            </button>
+                                        </div>
+
+                                    </div>
+
                                 </form>
                             </div><!--end custom-form-->
                         </div>
                     </div>
                 </div><!--end col-->
 
-                <div class="col-lg-8 col-md-6 ps-md-3 pe-md-3 mt-4 pt-2">
-                    <div class="card map map-height-two rounded map-gray border-0">
-                        <div class="card-body p-0">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                                style="border:0" class="rounded" allowfullscreen=""></iframe>
-                        </div>
-                    </div>
-                </div><!--end col-->
+
+
             </div><!--end row-->
         </div><!--end container-->
 
@@ -124,7 +121,7 @@
                             <i class="uil uil-phone rounded h3 mb-0"></i>
                         </div>
                         <div class="content mt-4">
-                            <h5 class="fw-bold">Phone</h5>
+                            <h5 class="fw-bold">الموبايل</h5>
                             <p class="text-muted">Start working with Landrick that can provide everything</p>
                             <a href="tel:+152534-468-854" class="read-more">+152 534-468-854</a>
                         </div>
@@ -137,7 +134,7 @@
                             <i class="uil uil-envelope rounded h3 mb-0"></i>
                         </div>
                         <div class="content mt-4">
-                            <h5 class="fw-bold">Email</h5>
+                            <h5 class="fw-bold">البريد الالكترونى</h5>
                             <p class="text-muted">Start working with Landrick that can provide everything</p>
                             <a href="mailto:contact@example.com" class="read-more">contact@example.com</a>
                         </div>
