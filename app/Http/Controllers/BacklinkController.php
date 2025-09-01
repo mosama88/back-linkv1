@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\ContactRequest;
-use App\Models\Contact;
+use App\Models\BackLink;
 
 class BacklinkController extends Controller
 {
     public function index()
     {
-        return view('website.backlinks');
+        $data = BackLink::orderByDesc('id')->paginate();
+
+        return view('website.backlinks',compact('data'));
     }
 
     // public function store(ContactRequest $request)

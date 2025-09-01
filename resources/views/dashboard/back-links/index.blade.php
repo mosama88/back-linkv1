@@ -62,8 +62,6 @@
                                 @endif
                             </td>
                             <td class="text-end p-3">
-
-
                                 <div class="btn-group dropdown-primary me-2 mt-2">
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">

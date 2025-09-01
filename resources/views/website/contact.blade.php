@@ -1,5 +1,5 @@
 @extends('website.layouts.master')
-@section('title', 'الرئيسية')
+@section('title', 'أتصل بنا')
 @section('content')
 
     <!-- Hero Start -->
@@ -154,7 +154,7 @@
                         <div class="content mt-4">
                             <h5 class="fw-bold">الموبايل</h5>
                             <p class="text-muted">Start working with Landrick that can provide everything</p>
-                            <a href="tel:+152534-468-854" class="read-more">{{$setting->mobile}}</a>
+                            <a href="tel:+152534-468-854" class="read-more">{{ $setting->mobile }}</a>
                         </div>
                     </div>
                 </div><!--end col-->
