@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BacklinkController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,9 +14,10 @@ Route::get('/home', function () {
 })->name('web-site.index-2');
 
 
-Route::get('/contact', function () {
-    return view('website.contact');
-})->name('web-site.contact');
+
+Route::get('/backlinks', [BacklinkController::class, 'index'])->name('web-site.backlinks');
+Route::get('/contact', [ContactController::class, 'index'])->name('web-site.contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contacts.store');
 
 
 Route::middleware(['auth', 'verified'])

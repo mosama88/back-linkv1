@@ -61,7 +61,7 @@
                 <ul class="navigation-menu nav-right">
                     <li><a href="{{route('web-site.index')}}" class="sub-menu-item">الرئيسية</a></li>
 
-                    <li><a href="ai-about.html" class="sub-menu-item">من نحن</a></li>
+                    <li><a href="{{route('web-site.backlinks')}}" class="sub-menu-item">Backlinks</a></li>
 
                     <li><a href="ai-pricing.html" class="sub-menu-item">الأشتراكات</a></li>
 
