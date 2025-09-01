@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Setting;
 use App\Models\Admin;
 use App\Models\Balance;
 use App\Models\BackLink;
@@ -31,6 +32,15 @@ class DatabaseSeeder extends Seeder
             'username' => 'mosama',
             'password' => Hash::make('password'),
             'mobile' => '01550565699',
+        ]);
+
+        Setting::create([
+            'website_name' => 'BackLinks',
+            'email' => 'backlink@info.com',
+            'mobile' => '01550565699',
+            'whatsapp' => '01228759920',
+            'url' => 'https://backlinks.com',
+            'updated_by' => '1',
         ]);
 
         Admin::factory(100)->create();
