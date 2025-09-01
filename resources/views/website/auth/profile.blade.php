@@ -11,7 +11,7 @@
             <div class="row mt-5 justify-content-center">
                 <div class="col-lg-12 text-center">
                     <div class="pages-heading">
-                        <h4 class="title mb-0">بروفايل</h4>
+                        <h4 class="title mb-0">أهلا بيك {{ Auth::user()->name }} ❤️</h4>
                     </div>
                 </div> <!--end col-->
             </div><!--end row-->
@@ -77,12 +77,16 @@
                                 @method('patch')
 
                                 <div class="mt-3 text-md-start text-center d-sm-flex" dir="ltr">
-                                    <img src="{{ asset('website') }}/assets/images/client/05.jpg"
-                                        class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4"
-                                        alt="">
-
+                                    @if ($user->getFirstMediaUrl('image', 'preview'))
+                                        <img src="{{ $user->getFirstMediaUrl('image', 'preview') }}" alt="Thumbnail"
+                                            class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4">
+                                    @else
+                                        <img src="{{ asset('website') }}/assets/images/default-user.png" alt="Thumbnail"
+                                            class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4">
+                                    @endif
                                     <div class="mt-md-4 mt-3 mt-sm-0">
-                                        <a href="javascript:void(0)" class="btn btn-outline-primary mt-2 ms-2">تغيير
+                                        <a href="javascript:void(0)" class="btn btn-outline-primary mt-2 ms-2"
+                                            data-bs-toggle="modal" data-bs-target="#wishlist">تغيير
                                             الصورة</a>
                                     </div>
                                 </div>
@@ -154,5 +158,43 @@
         </div><!--end container-->
     </section><!--end section-->
     <!-- Profile Setting End -->
+
+
+
+    <!-- Wishlist Popup Start -->
+    <div class="modal fade" id="wishlist" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded shadow border-0">
+                <div class="modal-body py-5">
+                    <div class="text-center">
+                        <div class="icon d-flex align-items-center justify-content-center bg-soft-danger rounded-circle mx-auto"
+                            style="height: 95px; width:95px;">
+                            <h1 class="mb-0"><i class="uil uil-heart-break align-middle"></i></h1>
+                        </div>
+                        <form method="POST" action="{{ route('profile.updateImage') }}" class="mt-6 space-y-6"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('patch')
+                            <div class="mt-4">
+                                <h4>أرفق صورتك</h4>
+                                <x-image-preview name='image' />
+                                @error('image')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
+
+                                @enderror
+
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-outline-primary">+ أرفاق</button>
+                                </div>
+                            </div>
+                        </form><!--end form-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Wishlist Popup End -->
+
 
 @endsection

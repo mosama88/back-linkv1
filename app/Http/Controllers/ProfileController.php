@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -57,4 +58,21 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+public function updateImage(Request $request): RedirectResponse
+{
+    $request->validate([
+        'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+    ]);
+
+    $user = $request->user();
+
+    if ($request->hasFile('image')) {
+        $user->clearMediaCollection('image');
+        $user->addMediaFromRequest('image')
+             ->toMediaCollection('image');
+    }
+
+    return Redirect::route('profile.edit')->with('status', 'image-updated');
+}
+
 }
